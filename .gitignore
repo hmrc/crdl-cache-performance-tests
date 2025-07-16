@@ -6,18 +6,22 @@ logs
 /out
 /.settings
 *.DS_Store
-/.project
+.project/
 .history
 
 # IDE files
-/.bsp
-/.idea
-/*.iml
-/*.ipr
+.bloop/
+.bsp/
+.idea/
+.metals/
+.vscode/
+*.iml
+*.ipr
 *.iws
-/.idea_modules
+.idea_modules/
 eclipse
 .scala_dependencies
+metals.sbt
 
 # sbt files
 dist
