@@ -27,7 +27,7 @@ class CRDLCacheSimulation extends PerformanceTestRunner with ServicesConfigurati
   def deleteCrdlData(entity: String) = {
     requests.delete(s"$crdlCacheUrl/test-only/$entity")
   }
-  
+
   def importCrdlCata(entity: String) = {
     requests.post(s"$crdlCacheUrl/test-only/$entity")
   }
@@ -38,20 +38,22 @@ class CRDLCacheSimulation extends PerformanceTestRunner with ServicesConfigurati
     json("status").str
   }
 
-  before {
-    // Clear down any existing data
-    deleteCrdlData("last-updated")
-    deleteCrdlData("codelists")
-    deleteCrdlData("correspondence-lists")
-    // Import everything again
-    importCrdlCata("codelists")
-    importCrdlCata("correspondence-lists")
-    // Wait for the imports to complete
-    while (getCrdlImportStatus("codelists") != "IDLE") {
-      Thread.sleep(200)
-    }
-    while (getCrdlImportStatus("correspondence-lists") != "IDLE") {
-      Thread.sleep(200)
+  if (runLocal) {
+    before {
+      // Clear down any existing data
+      deleteCrdlData("last-updated")
+      deleteCrdlData("codelists")
+      deleteCrdlData("correspondence-lists")
+      // Import everything again
+      importCrdlCata("codelists")
+      importCrdlCata("correspondence-lists")
+      // Wait for the imports to complete
+      while (getCrdlImportStatus("codelists") != "IDLE") {
+        Thread.sleep(200)
+      }
+      while (getCrdlImportStatus("correspondence-lists") != "IDLE") {
+        Thread.sleep(200)
+      }
     }
   }
 
