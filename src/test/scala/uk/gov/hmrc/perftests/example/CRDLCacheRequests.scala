@@ -29,35 +29,35 @@ object CRDLCacheRequests extends ServicesConfiguration {
     http("Fetch Countries")
       .get(s"$baseUrl/lists/BC08")
       .check(status.is(200))
-      .check(jsonPath("$").count.gte(0))
+      .check(jsonPath("$").count.gt(0))
 
   val fetchMemberStates: HttpRequestBuilder =
     http("Fetch Member States")
       .get(s"$baseUrl/lists/BC11")
       .check(status.is(200))
-      .check(jsonPath("$").count.gte(0))
+      .check(jsonPath("$").count.gt(0))
 
   val fetchPackagingTypes: HttpRequestBuilder =
     http("Fetch Packaging Types")
       .get(s"$baseUrl/lists/BC17")
       .check(status.is(200))
-      .check(jsonPath("$").count.gte(0))
+      .check(jsonPath("$").count.gt(0))
 
   val fetchTransportUnits: HttpRequestBuilder =
     http("Fetch Transport Units")
       .get(s"$baseUrl/lists/BC35")
       .check(status.is(200))
-      .check(jsonPath("$").count.gte(0))
+      .check(jsonPath("$").count.gt(0))
 
   val fetchWineOperations: HttpRequestBuilder =
     http("Fetch Wine Operations")
       .get(s"$baseUrl/lists/BC41")
       .check(status.is(200))
-      .check(jsonPath("$").count.gte(0))
+      .check(jsonPath("$").count.gt(0))
 
   val fetchDocumentTypes: HttpRequestBuilder =
     http("Fetch Document Types")
       .get(s"$baseUrl/lists/BC106")
       .check(status.is(200))
-      .check(jsonPath("$").count.gte(0))
+      .check(jsonPath("$").count.gt(0))
 }
