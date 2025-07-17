@@ -24,7 +24,7 @@ import uk.gov.hmrc.performance.conf.ServicesConfiguration
 object CRDLCacheRequests extends ServicesConfiguration {
 
   val baseUrl: String = s"${baseUrlFor("crdl-cache")}/crdl-cache"
-  
+
   val fetchCountries: HttpRequestBuilder =
     http("Fetch Countries")
       .get(s"$baseUrl/lists/BC08")

@@ -16,9 +16,13 @@
 
 package uk.gov.hmrc.perftests.example
 
+import io.gatling.core.Predef._
+import io.gatling.core.action.builder.PauseBuilder
+import uk.gov.hmrc.performance.conf.ServicesConfiguration
 import uk.gov.hmrc.performance.simulation.PerformanceTestRunner
 import uk.gov.hmrc.perftests.example.CRDLCacheRequests._
-import uk.gov.hmrc.performance.conf.ServicesConfiguration
+
+import scala.concurrent.duration._
 
 class CRDLCacheSimulation extends PerformanceTestRunner with ServicesConfiguration {
   val crdlCacheUrl   = s"${baseUrlFor("crdl-cache")}/crdl-cache"
@@ -57,12 +61,19 @@ class CRDLCacheSimulation extends PerformanceTestRunner with ServicesConfigurati
     }
   }
 
-  setup("create-draft-movement", "Create A Draft Movement").withRequests(
+  val pause = new PauseBuilder(1.second, None)
+
+  setup("create-draft-movement", "Create A Draft Movement").withActions(
+    // Countries and member states are fetched at the same time
     fetchCountries,
     fetchMemberStates,
+    pause,
     fetchPackagingTypes,
+    pause,
     fetchTransportUnits,
+    pause,
     fetchWineOperations,
+    pause,
     fetchDocumentTypes
   )
 
