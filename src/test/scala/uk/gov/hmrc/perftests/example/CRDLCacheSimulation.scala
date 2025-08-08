@@ -115,27 +115,27 @@ class CRDLCacheSimulation extends PerformanceTestRunner with ServicesConfigurati
   }
 
   setup("fetch-packaging-types", "Fetch Packaging Types")
-    .withActions(fetchPackagingTypes)
+    .withRequests(fetchPackagingTypes)
 
   setup("fetch-member-states", "Fetch Member States")
-    .withActions(fetchMemberStates)
+    .withRequests(fetchMemberStates)
 
   setup("fetch-countable-packaging-types", "Fetch Countable Packaging Types")
-    .withActions(fetchCountablePackagingTypes)
+    .withRequests(fetchCountablePackagingTypes)
 
   setup("fetch-document-types", "Fetch Document Types")
-    .withActions(fetchDocumentTypes)
+    .withRequests(fetchDocumentTypes)
 
   setup("fetch-specified-packaging-types", "Fetch Specified Packaging Types")
     .withActions(packagingTypesFeeder.actionBuilders: _*)
-    .withActions(fetchSpecifiedPackagingTypes)
+    .withRequests(fetchSpecifiedPackagingTypes)
 
   setup("fetch-specified-wine-operations", "Fetch Specified Wine Operations")
     .withActions(wineOperationsFeeder.actionBuilders: _*)
-    .withActions(fetchSpecifiedWineOperations)
+    .withRequests(fetchSpecifiedWineOperations)
 
   setup("fetch-member-states-and-countries", "Fetch Member States And Countries")
-    .withActions(fetchMemberStates, fetchCountries)
+    .withRequests(fetchMemberStates, fetchCountries)
 
   runSimulation()
 }
