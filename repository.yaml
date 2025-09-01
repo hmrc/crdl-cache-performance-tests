@@ -1,2 +1,5 @@
+digital-service: Central Reference Data Library Cache
+description: Performance Tests for crdl-cache service
 repoVisibility: public_0C3F0CE3E6E6448FAD341E7BFA50FCD333E06A20CFF05FCACE61154DDBBADF71
 type: test
+test-type: performance
